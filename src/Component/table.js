@@ -18,6 +18,7 @@ import { NavLink } from 'react-router-dom';
 import Spinner from './spinner'
 
 
+
 const columns = [
   { id: 'ID', label: 'ID', minWidth: '11px' },
   { name: 'NAME', label: 'NAME', minWidth: '40px' },
@@ -48,10 +49,12 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const rows = useSelector((state)=>state)
+
+
+ 
   const [listState , setListState] = useState([]);
   
-   
+        
   
         const listDataHandler=async()=>{
         
@@ -61,32 +64,29 @@ export default function StickyHeadTable() {
            for (let key in resData){
              listData.push({
                objectId : key,
-               name : resData[key].data.name,
+               name : resData[key].data.payload.name,
                id : resData[key].id,
-               email : resData[key].data.email,
-               phone : resData[key].data.phone
+               email : resData[key].data.payload.email,
+               phone : resData[key].data.payload.phone
 
              })
            }
-
+                
            setListState(listData);
 
 
          }
           listDataHandler()
-         
-
-        const deleteHandler=async(selectedTar)=>{
-           
         
-         await setListState.filter((key)=>{
-        console.log(  key.objectId !== selectedTar.objectId
-        )
-            return (
-          
-          key.objectId !== selectedTar.objectId
-          )} )
 
+        const deleteHandler=(selectedTar)=>{
+          fetch(`https://user-management-407ec-default-rtdb.firebaseio.com/addUser/${selectedTar}.json`,{
+          method: 'DELETE'   
+          }).then(()=>{
+ setListState(prev=>prev.filter(key => key.objectId !== selectedTar) )
+
+          })
+       
         }
   
 
@@ -178,7 +178,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={listState.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

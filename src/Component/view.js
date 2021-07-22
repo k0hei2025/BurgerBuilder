@@ -56,10 +56,10 @@ export default function StickyHeadTable() {
            for (let key in resData){
              listData.push({
                objectId : key,
-               name : resData[key].data.name,
+               name : resData[key].data.payload.name,
                id : resData[key].id,
-               email : resData[key].data.email,
-               phone : resData[key].data.phone
+               email : resData[key].data.payload.email,
+               phone : resData[key].data.payload.phone
 
              })
            }
