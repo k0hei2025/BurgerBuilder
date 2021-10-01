@@ -12,7 +12,6 @@ function App() {
 
   let route = (
  <Switch>
-     
     <Route path="/page1"  exact component={AddButton}/>
     <Route path="/" exact component={Table}/>
     <Route path="/page3" exact component={view}/>
