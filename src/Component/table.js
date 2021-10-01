@@ -33,11 +33,11 @@ const useStyles = makeStyles({
     backgroundColor:'#FFA900'
   },
   container: {
-    maxHeight: 440,
-    backgroundColor:'#628395'
+    maxHeight: 800vh,
+    backgroundColor:'000'
   },
   coloumContainer:{
-     backgroundColor:'#FFA900'
+     backgroundColor:'000'
   }
 });
 
@@ -50,7 +50,13 @@ export default function StickyHeadTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
 
-
+ const useEffect({
+  const fdds = async=()=>{
+    const data = await fetch("data/tr.json")
+    const resData = await  data.json();
+ }
+ 
+ },[])
  
   const [listState , setListState] = useState([]);
   
