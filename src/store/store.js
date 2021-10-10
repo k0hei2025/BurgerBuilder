@@ -16,7 +16,9 @@ import {configureStore, createSlice} from '@reduxjs/toolkit'
                                 const storeObject = {
                           name : action.payload.name,
                        email : action.payload.email,
-                     phone : action.payload.phone
+                     phone : action.payload.phone,
+                                  mail : action.payload.mail,
+                                  
                              }
 
                         state.dataList.push(storeObject);
@@ -38,8 +40,10 @@ import {configureStore, createSlice} from '@reduxjs/toolkit'
       method:"POST",
       body:JSON.stringify({
             id : new Date().getTime(),
-          data :  userDataPacket}),
-      headers : {
+          data : { userDataPacket,
+                  mainPacket
+                 }
+                  headers : {
         'Content-Type' : 'application/json'
       }
     });
